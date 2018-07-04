@@ -9,9 +9,13 @@ I_FILES := $(wildcard $(INC_DIR)/*.h)
 CC = mpiCC
 CFLAGS = -W -Wall
 LFLAGS = -lm
+CREATE = mkdirs
 EXEC = main
 
-all: $(EXEC)
+all:  $(CREATE) $(EXEC)
+
+mkdirs:
+	mkdir -p $(OBJ_DIR)
 
 main: src/main.c $(O_FILES) $(I_FILES)
 	$(CC) $(CFLAGS) -o $@ $< $(LFLAGS)
